@@ -7,6 +7,7 @@ namespace Solido\Serialization\DTO;
 use Kcs\Serializer\EventDispatcher\PreSerializeEvent;
 use Solido\DtoManagement\Proxy\ProxyInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+
 use function get_class;
 use function get_parent_class;
 

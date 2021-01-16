@@ -7,6 +7,7 @@ namespace Solido\Serialization\DTO;
 use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use Solido\DtoManagement\Proxy\ProxyInterface;
+
 use function get_class;
 use function get_parent_class;
 

@@ -10,6 +10,7 @@ use Kcs\Serializer\SerializerInterface;
 use Kcs\Serializer\Type\Type;
 use Solido\Serialization\Exception\UnsupportedFormatException;
 use Solido\Serialization\SerializerInterface as SerializerAdapterInterface;
+
 use function assert;
 
 class KcsSerializerAdapter implements SerializerAdapterInterface
