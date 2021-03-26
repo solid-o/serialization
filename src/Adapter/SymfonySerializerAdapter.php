@@ -12,14 +12,14 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class SymfonySerializerAdapter implements SerializerAdapterInterface
 {
-    /** @var string[] */
-    private array $defaultGroups;
+    /** @var string[]|null */
+    private ?array $defaultGroups;
     private SerializerInterface $serializer;
 
     /**
      * @param string[] $defaultGroups
      */
-    public function __construct(SerializerInterface $serializer, array $defaultGroups = ['Default'])
+    public function __construct(SerializerInterface $serializer, ?array $defaultGroups = null)
     {
         $this->serializer = $serializer;
         $this->defaultGroups = $defaultGroups;

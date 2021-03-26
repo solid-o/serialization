@@ -19,20 +19,20 @@
         "csfix": "vendor/bin/phpcbf --standard=Solido src/"
     },
     "require": {
-        "php": "^7.4|^8.0"
+        "php": "^7.4 || ^8.0"
     },
     "require-dev": {
         "jms/serializer": "^3.0",
-        "kcs/serializer": "^3.3|^4.0",
+        "kcs/serializer": "^3.3 || ^4.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4",
         "roave/security-advisories": "dev-master",
         "solido/dto-management": "*",
         "solido/php-coding-standards": "dev-master",
-        "symfony/event-dispatcher": "^4.4|^5.0",
-        "symfony/property-access": "^5.1",
-        "symfony/serializer": "^4.4|^5.0",
-        "symfony/var-dumper": "^4.4|^5.0"
+        "symfony/event-dispatcher": "^4.4 || ^5.0",
+        "symfony/property-access": "^4.4 || ^5.0",
+        "symfony/serializer": "^4.4 || ^5.0",
+        "symfony/var-dumper": "^4.4 || ^5.0"
     },
     "autoload": {
         "psr-4": {
