@@ -18,10 +18,9 @@ interface SerializerInterface
      *
      * @param mixed $data
      * @param array<string, mixed>|null $context
+     * @phpstan-param array{groups?: string[]|null, type?: ?string, serialize_null?: bool, enable_max_depth?: bool} $context
      *
      * @return mixed
-     *
-     * @phpstan-param array{groups?: string[]|null, type?: ?string, serialize_null?: bool, enable_max_depth?: bool} $context
      */
     public function serialize($data, string $format, ?array $context = null);
 }
