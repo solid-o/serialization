@@ -2689,12 +2689,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "1a08d0c7ab47e57fad0d254951a615f07445e91f"
+                "reference": "88c4d972f82b364386c98eebecf38512708a4de4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/1a08d0c7ab47e57fad0d254951a615f07445e91f",
-                "reference": "1a08d0c7ab47e57fad0d254951a615f07445e91f",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/88c4d972f82b364386c98eebecf38512708a4de4",
+                "reference": "88c4d972f82b364386c98eebecf38512708a4de4",
                 "shasum": ""
             },
             "conflict": {
@@ -2752,6 +2752,7 @@
                 "endroid/qr-code-bundle": "<3.4.2",
                 "enshrined/svg-sanitize": "<0.13.1",
                 "erusev/parsedown": "<1.7.2",
+                "ether/logs": "<3.0.4",
                 "ezsystems/demobundle": ">=5.4,<5.4.6.1",
                 "ezsystems/ez-support-tools": ">=2.2,<2.2.3",
                 "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
@@ -3056,7 +3057,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-02T20:02:51+00:00"
+            "time": "2021-07-12T17:14:45+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -4024,16 +4025,16 @@
         },
         {
             "name": "slevomat/coding-standard",
-            "version": "7.0.10",
+            "version": "7.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slevomat/coding-standard.git",
-                "reference": "4607562c9d217a1026c9effde4fc78065571fd19"
+                "reference": "7151ac79031549850c110815c5fabeccff952592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/4607562c9d217a1026c9effde4fc78065571fd19",
-                "reference": "4607562c9d217a1026c9effde4fc78065571fd19",
+                "url": "https://api.github.com/repos/slevomat/coding-standard/zipball/7151ac79031549850c110815c5fabeccff952592",
+                "reference": "7151ac79031549850c110815c5fabeccff952592",
                 "shasum": ""
             },
             "require": {
@@ -4069,7 +4070,7 @@
             "description": "Slevomat Coding Standard for PHP_CodeSniffer complements Consistence Coding Standard by providing sniffs with additional checks.",
             "support": {
                 "issues": "https://github.com/slevomat/coding-standard/issues",
-                "source": "https://github.com/slevomat/coding-standard/tree/7.0.10"
+                "source": "https://github.com/slevomat/coding-standard/tree/7.0.11"
             },
             "funding": [
                 {
@@ -4081,32 +4082,34 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-09T09:07:10+00:00"
+            "time": "2021-07-12T17:14:11+00:00"
         },
         {
             "name": "solido/dto-management",
-            "version": "v0.1.2",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/solid-o/dto-management.git",
-                "reference": "6e3cdaf49802a7067d720cd777fc0975be2a39b7"
+                "reference": "52db03e612baca4c59769bfcd845682398437f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solid-o/dto-management/zipball/6e3cdaf49802a7067d720cd777fc0975be2a39b7",
-                "reference": "6e3cdaf49802a7067d720cd777fc0975be2a39b7",
+                "url": "https://api.github.com/repos/solid-o/dto-management/zipball/52db03e612baca4c59769bfcd845682398437f19",
+                "reference": "52db03e612baca4c59769bfcd845682398437f19",
                 "shasum": ""
             },
             "require": {
-                "kcs/class-finder": "^0.1.5|^0.2|^0.3",
+                "kcs/class-finder": "^0.1.5 || ^0.2 || ^0.3",
                 "nikic/php-parser": "^4.4",
                 "ocramius/proxy-manager": "^2.6",
-                "php": "^7.4|^8.0",
+                "php": "^7.4 || ^8.0",
                 "psr/container": "^1.0"
             },
             "require-dev": {
+                "nyholm/psr7": "^1.0",
                 "phpspec/prophecy-phpunit": "^2.0",
                 "phpunit/phpunit": "^9.4",
+                "psr/http-message": "^1.0",
                 "roave/security-advisories": "dev-master",
                 "solido/php-coding-standards": "dev-master",
                 "symfony/http-foundation": "^5.0"
@@ -4114,7 +4117,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.1.x-dev"
+                    "dev-master": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -4139,9 +4142,9 @@
             "description": "Versioned DTO management library.",
             "support": {
                 "issues": "https://github.com/solid-o/dto-management/issues",
-                "source": "https://github.com/solid-o/dto-management/tree/v0.1.2"
+                "source": "https://github.com/solid-o/dto-management/tree/v0.2.0"
             },
-            "time": "2021-07-04T09:16:13+00:00"
+            "time": "2021-07-13T14:20:18+00:00"
         },
         {
             "name": "solido/php-coding-standards",
