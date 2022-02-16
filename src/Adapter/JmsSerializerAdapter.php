@@ -40,7 +40,7 @@ class JmsSerializerAdapter implements SerializerAdapterInterface
 
         try {
             return $this->serializer->serialize($data, $format, $serializerContext, $context['type'] ?? null);
-        } catch (JMSUnsupportedFormatExceptionAlias $e) {
+        } catch (JMSUnsupportedFormatExceptionAlias $e) { /* @phpstan-ignore-line */
             throw new UnsupportedFormatException($e->getMessage(), $e->getCode(), $e);
         }
     }
