@@ -8,6 +8,7 @@ use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigatorInterface;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\Metadata\ClassMetadata;
+use JMS\Serializer\Visitor\SerializationVisitorInterface;
 use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Translation\TranslatorInterface as LegacyTranslatorInterface;
@@ -23,7 +24,7 @@ use function Safe\sprintf;
 class FormErrorHandler implements SubscribingHandlerInterface
 {
     /** @var LegacyTranslatorInterface|TranslatorInterface|null */
-    private $translator;
+    private $translator; // @phpstan-ignore-line
 
     /**
      * {@inheritdoc}
@@ -52,22 +53,24 @@ class FormErrorHandler implements SubscribingHandlerInterface
     /**
      * @param LegacyTranslatorInterface|TranslatorInterface|null $translator
      */
-    public function __construct($translator = null)
+    public function __construct($translator = null) // @phpstan-ignore-line
     {
         if (
-            $translator !== null &&
-            ! $translator instanceof LegacyTranslatorInterface && ! $translator instanceof TranslatorInterface
+            $translator !== null && // @phpstan-ignore-line
+            ! $translator instanceof LegacyTranslatorInterface && ! $translator instanceof TranslatorInterface  // @phpstan-ignore-line
         ) {
-            throw new TypeError(sprintf('Argument 1 passed to %s constructor should be an instance of %s or %s, %s passed', self::class, LegacyTranslatorInterface::class, TranslatorInterface::class, is_object($translator) ? get_class($translator) : gettype($translator)));
+            throw new TypeError(sprintf('Argument 1 passed to %s constructor should be an instance of %s or %s, %s passed', self::class, LegacyTranslatorInterface::class, TranslatorInterface::class, is_object($translator) ? get_class($translator) : gettype($translator)));  // @phpstan-ignore-line
         }
 
         $this->translator = $translator;
     }
 
     /**
+     * @param array<string, mixed> $type
+     *
      * @return mixed
      */
-    public function serializeForm(VisitorInterface $visitor, Form $form, Type $type, Context $context)
+    public function serializeForm(SerializationVisitorInterface $visitor, Form $form, array $type, Context $context)
     {
         $serializableForm = new SerializableForm($form);
         $metadata = $context->getMetadataFactory()->getMetadataForClass(SerializableForm::class);
@@ -77,11 +80,13 @@ class FormErrorHandler implements SubscribingHandlerInterface
     }
 
     /**
+     * @param array<string, mixed> $type
+     *
      * @return mixed
      */
-    public function serializeFormError(VisitorInterface $visitor, FormError $formError, Type $type, Context $context)
+    public function serializeFormError(SerializationVisitorInterface $visitor, FormError $formError, array $type)
     {
-        return $visitor->visitString($this->getErrorMessage($formError), $type, $context);
+        return $visitor->visitString($this->getErrorMessage($formError), $type);
     }
 
     private function getErrorMessage(FormError $error): string
@@ -99,7 +104,7 @@ class FormErrorHandler implements SubscribingHandlerInterface
                 );
             }
 
-            return $this->translator->transChoice(
+            return $this->translator->transChoice( // @phpstan-ignore-line
                 $error->getMessageTemplate(),
                 $error->getMessagePluralization(),
                 $error->getMessageParameters(),
@@ -107,6 +112,6 @@ class FormErrorHandler implements SubscribingHandlerInterface
             );
         }
 
-        return $this->translator->trans($error->getMessageTemplate(), $error->getMessageParameters(), 'validators');
+        return $this->translator->trans($error->getMessageTemplate(), $error->getMessageParameters(), 'validators'); // @phpstan-ignore-line
     }
 }

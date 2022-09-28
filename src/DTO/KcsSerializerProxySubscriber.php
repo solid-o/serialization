@@ -30,8 +30,9 @@ class KcsSerializerProxySubscriber implements EventSubscriberInterface
         $type->name = get_parent_class($object);
 
         $r = new ReflectionClass($type);
-        if ($r->getProperty('metadata')->getType()->allowsNull()) {
-            $type->metadata = null;
+        $rType = $r->getProperty('metadata')->getType();
+        if ($rType && $rType->allowsNull()) {
+            $type->metadata = null; // @phpstan-ignore-line
         } else {
             unset($type->metadata);
         }
