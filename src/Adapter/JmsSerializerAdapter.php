@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Solido\Serialization\Adapter;
 
+use JMS\Serializer\ArrayTransformerInterface;
 use JMS\Serializer\Exception\UnsupportedFormatException as JMSUnsupportedFormatExceptionAlias;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerInterface;
@@ -39,8 +40,12 @@ class JmsSerializerAdapter implements SerializerAdapterInterface
         }
 
         try {
+            if ($format === 'array' && $this->serializer instanceof ArrayTransformerInterface) {
+                return $this->serializer->toArray($data, $serializerContext, $context['type'] ?? null);
+            }
+
             return $this->serializer->serialize($data, $format, $serializerContext, $context['type'] ?? null);
-        } catch (JMSUnsupportedFormatExceptionAlias $e) { /* @phpstan-ignore-line */
+        } catch (JMSUnsupportedFormatExceptionAlias $e) {
             throw new UnsupportedFormatException($e->getMessage(), $e->getCode(), $e);
         }
     }

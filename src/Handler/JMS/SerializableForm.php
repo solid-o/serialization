@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormInterface;
 use function assert;
 
 /**
+ * @Serializer\ExclusionPolicy(policy="NONE")
  * @Serializer\XmlRoot(name="form")
  */
 final class SerializableForm
@@ -22,7 +23,7 @@ final class SerializableForm
     private array $errors = [];
 
     /**
-     * @Serializer\Type("array<App\Serializer\Util\SerializableForm>")
+     * @Serializer\Type("array<Solido\Serialization\Handler\JMS\SerializableForm>")
      * @Serializer\XmlList(entry="form", inline=true)
      * @var static[]
      */
