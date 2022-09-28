@@ -24,12 +24,14 @@
     "require-dev": {
         "jms/serializer": "^3.0",
         "kcs/serializer": "^3.3 || ^4.0",
+        "friendsofphp/proxy-manager-lts": "^1.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^9.4",
         "roave/security-advisories": "dev-master",
         "solido/dto-management": "^0.2 || ^0.3",
         "solido/php-coding-standards": "dev-master",
         "symfony/event-dispatcher": "^4.4 || ^5.0 || ^6.0",
+        "symfony/form": "^4.4 || ^5.0 || ^6.0",
         "symfony/property-access": "^4.4 || ^5.0 || ^6.0",
         "symfony/serializer": "^4.4 || ^5.0 || ^6.0",
         "symfony/var-dumper": "^4.4 || ^5.0 || ^6.0"
