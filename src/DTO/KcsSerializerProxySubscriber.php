@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Solido\Serialization\DTO;
 
 use Kcs\Serializer\EventDispatcher\PreSerializeEvent;
+use ReflectionClass;
 use Solido\DtoManagement\Proxy\ProxyInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -27,7 +28,13 @@ class KcsSerializerProxySubscriber implements EventSubscriberInterface
 
         // @phpstan-ignore-next-line
         $type->name = get_parent_class($object);
-        $type->metadata = null;
+
+        $r = new ReflectionClass($type);
+        if ($r->getProperty('metadata')->getType()->allowsNull()) {
+            $type->metadata = null;
+        } else {
+            unset($type->metadata);
+        }
     }
 
     /**
