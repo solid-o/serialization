@@ -8,7 +8,6 @@ use JMS\Serializer\EventDispatcher\EventSubscriberInterface;
 use JMS\Serializer\EventDispatcher\PreSerializeEvent;
 use Solido\DtoManagement\Proxy\ProxyInterface;
 
-use function get_class;
 use function get_parent_class;
 
 class JmsSerializerProxySubscriber implements EventSubscriberInterface
@@ -18,7 +17,7 @@ class JmsSerializerProxySubscriber implements EventSubscriberInterface
         $object = $event->getObject();
         $type = $event->getType();
 
-        if ($type['name'] !== get_class($object)) {
+        if ($type['name'] !== $object::class) {
             return;
         }
 
@@ -27,7 +26,7 @@ class JmsSerializerProxySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public static function getSubscribedEvents(): array
     {

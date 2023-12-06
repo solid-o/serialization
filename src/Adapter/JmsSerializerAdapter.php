@@ -13,23 +13,12 @@ use Solido\Serialization\SerializerInterface as SerializerAdapterInterface;
 
 class JmsSerializerAdapter implements SerializerAdapterInterface
 {
-    /** @var string[] */
-    private array $defaultGroups;
-    private SerializerInterface $serializer;
-
-    /**
-     * @param string[] $defaultGroups
-     */
-    public function __construct(SerializerInterface $serializer, array $defaultGroups = ['Default'])
+    /** @param string[] $defaultGroups */
+    public function __construct(private SerializerInterface $serializer, private array $defaultGroups = ['Default'])
     {
-        $this->serializer = $serializer;
-        $this->defaultGroups = $defaultGroups;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize($data, string $format, ?array $context = null)
+    public function serialize(mixed $data, string $format, array|null $context = null): array|string
     {
         $serializerContext = SerializationContext::create()
             ->setGroups($context['groups'] ?? $this->defaultGroups)

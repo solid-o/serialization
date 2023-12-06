@@ -16,11 +16,8 @@ interface SerializerInterface
     /**
      * Serializes data to be returned as API response.
      *
-     * @param mixed $data
      * @param array<string, mixed>|null $context
      * @phpstan-param array{groups?: string[]|null, type?: ?string, serialize_null?: bool, enable_max_depth?: bool} $context
-     *
-     * @return mixed
      */
-    public function serialize($data, string $format, ?array $context = null);
+    public function serialize(mixed $data, string $format, array|null $context = null): mixed;
 }

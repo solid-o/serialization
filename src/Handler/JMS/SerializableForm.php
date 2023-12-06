@@ -49,17 +49,13 @@ final class SerializableForm
         }
     }
 
-    /**
-     * @return FormError[]
-     */
+    /** @return FormError[] */
     public function getErrors(): array
     {
         return $this->errors;
     }
 
-    /**
-     * @return static[]
-     */
+    /** @return static[] */
     public function getChildren(): array
     {
         return $this->children;

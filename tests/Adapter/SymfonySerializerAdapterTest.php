@@ -1,14 +1,15 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Solido\Serialization\Tests\Adapter;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Solido\Serialization\Adapter\SymfonySerializerAdapter;
 use Solido\Serialization\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Mapping\ClassMetadataInterface;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
+use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
 use Symfony\Component\Serializer\Mapping\Loader\LoaderInterface;
 use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -18,11 +19,11 @@ class SymfonySerializerAdapterTest extends AbstractSerializerAdapterTest
 {
     protected function createAdapter(): SerializerInterface
     {
-        $annotationLoader = new AnnotationLoader(new AnnotationReader());
+        $annotationLoader = new AttributeLoader();
         $classMetadataFactory = new ClassMetadataFactory(new class($annotationLoader) implements LoaderInterface {
-            private AnnotationLoader $annotationLoader;
+            private AttributeLoader $annotationLoader;
 
-            public function __construct(AnnotationLoader $annotationLoader)
+            public function __construct(AttributeLoader $annotationLoader)
             {
                 $this->annotationLoader = $annotationLoader;
             }

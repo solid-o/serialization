@@ -12,27 +12,16 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class SymfonySerializerAdapter implements SerializerAdapterInterface
 {
-    /** @var string[]|null */
-    private ?array $defaultGroups;
-    private SerializerInterface $serializer;
-
-    /**
-     * @param string[] $defaultGroups
-     */
-    public function __construct(SerializerInterface $serializer, ?array $defaultGroups = null)
+    /** @param string[] $defaultGroups */
+    public function __construct(private SerializerInterface $serializer, private array|null $defaultGroups = null)
     {
-        $this->serializer = $serializer;
-        $this->defaultGroups = $defaultGroups;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function serialize($data, string $format, ?array $context = null)
+    public function serialize(mixed $data, string $format, array|null $context = null): string
     {
         $context = [
             'groups' => $context['groups'] ?? $this->defaultGroups,
-            AbstractObjectNormalizer::SKIP_NULL_VALUES => isset($context['serialize_null']) ? ! $context['serialize_null'] : false,
+            AbstractObjectNormalizer::SKIP_NULL_VALUES => isset($context['serialize_null']) && ! $context['serialize_null'],
             AbstractObjectNormalizer::ENABLE_MAX_DEPTH => $context['enable_max_depth'] ?? false,
             AbstractObjectNormalizer::PRESERVE_EMPTY_OBJECTS => true,
         ];

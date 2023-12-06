@@ -9,7 +9,6 @@ use ReflectionClass;
 use Solido\DtoManagement\Proxy\ProxyInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-use function get_class;
 use function get_parent_class;
 
 class KcsSerializerProxySubscriber implements EventSubscriberInterface
@@ -22,7 +21,7 @@ class KcsSerializerProxySubscriber implements EventSubscriberInterface
         }
 
         $type = $event->getType();
-        if (! $type->is(get_class($object))) {
+        if (! $type->is($object::class)) {
             return;
         }
 
@@ -39,7 +38,7 @@ class KcsSerializerProxySubscriber implements EventSubscriberInterface
     }
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public static function getSubscribedEvents(): array
     {
