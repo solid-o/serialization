@@ -18,6 +18,7 @@ class JmsSerializerAdapter implements SerializerAdapterInterface
     {
     }
 
+    /** @return array<array-key, mixed>|string */
     public function serialize(mixed $data, string $format, array|null $context = null): array|string
     {
         $serializerContext = SerializationContext::create()

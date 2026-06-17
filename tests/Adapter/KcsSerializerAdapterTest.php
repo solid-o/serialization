@@ -2,12 +2,11 @@
 
 namespace Solido\Serialization\Tests\Adapter;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use Kcs\Metadata\ClassMetadataInterface;
 use Kcs\Metadata\Loader\ChainLoader;
 use Kcs\Metadata\Loader\LoaderInterface;
 use Kcs\Serializer\Metadata\ClassMetadata;
-use Kcs\Serializer\Metadata\Loader\AnnotationLoader;
+use Kcs\Serializer\Metadata\Loader\AttributesLoader;
 use Kcs\Serializer\Metadata\PropertyMetadata;
 use Kcs\Serializer\SerializerBuilder;
 use Solido\Serialization\Adapter\KcsSerializerAdapter;
@@ -17,12 +16,9 @@ class KcsSerializerAdapterTest extends AbstractSerializerAdapterTest
 {
     protected function createAdapter(): SerializerInterface
     {
-        $annotationLoader = new AnnotationLoader();
-        $annotationLoader->setReader(new AnnotationReader());
-
         $serializer = SerializerBuilder::create()
             ->setMetadataLoader(new ChainLoader([
-                $annotationLoader,
+                new AttributesLoader(),
                 new class implements LoaderInterface {
                     public function loadClassMetadata(ClassMetadataInterface $classMetadata): bool
                     {

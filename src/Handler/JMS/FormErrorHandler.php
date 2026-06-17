@@ -18,9 +18,7 @@ use function assert;
 
 class FormErrorHandler implements SubscribingHandlerInterface
 {
-    /**
-     * {@inheritDoc}
-     */
+    /** @return iterable<array{type: class-string, method: string, direction: int, format: string, priority: int}> */
     public static function getSubscribingMethods(): iterable
     {
         foreach (['json', 'xml'] as $format) {
@@ -57,7 +55,10 @@ class FormErrorHandler implements SubscribingHandlerInterface
         return $context->getNavigator()->accept($serializableForm);
     }
 
-    /** @param array<string, mixed> $type */
+    /**
+     * @param array<string, mixed> $type
+     * @phpstan-param array{name: string, params: array<string, mixed>} $type
+     */
     public function serializeFormError(SerializationVisitorInterface $visitor, FormError $formError, array $type): mixed
     {
         return $visitor->visitString($this->getErrorMessage($formError), $type);

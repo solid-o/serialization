@@ -25,9 +25,7 @@ class JmsSerializerProxySubscriber implements EventSubscriberInterface
         $event->setType(get_parent_class($object));
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** @return array<int, array{event: string, method: string, interface: class-string}> */
     public static function getSubscribedEvents(): array
     {
         return [

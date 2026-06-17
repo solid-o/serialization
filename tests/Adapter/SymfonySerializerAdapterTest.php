@@ -7,6 +7,8 @@ namespace Solido\Serialization\Tests\Adapter;
 use Solido\Serialization\Adapter\SymfonySerializerAdapter;
 use Solido\Serialization\SerializerInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Mapping\AttributeMetadata;
+use Symfony\Component\Serializer\Mapping\AttributeMetadataInterface;
 use Symfony\Component\Serializer\Mapping\ClassMetadataInterface;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AttributeLoader;
@@ -35,16 +37,28 @@ class SymfonySerializerAdapterTest extends AbstractSerializerAdapterTest
                     return true;
                 }
 
-                foreach ($classMetadata->attributesMetadata as $attributeMetadata) {
-                    $attributeMetadata->groups = ['Default'];
+                foreach (['arr', 'barBar', 'foo', 'fooBar', 'integer', 'map', 'number', 'obj', 'str', 'xBar'] as $attribute) {
+                    $metadata = new AttributeMetadata($attribute);
+                    $metadata->addGroup('Default');
+                    $classMetadata->addAttributeMetadata($metadata);
                 }
 
-                $classMetadata->attributesMetadata['barBar']->groups = [ 'Default', 'bar' ];
-                $classMetadata->attributesMetadata['fooBar']->groups = [ 'Default', 'bar', 'foo' ];
-                $classMetadata->attributesMetadata['xBar']->groups = [ 'Default', 'bar' ];
-                $classMetadata->attributesMetadata['foo']->groups = [ 'Default', 'foo' ];
+                $this->addGroups($classMetadata->getAttributesMetadata()['barBar'], ['bar']);
+                $this->addGroups($classMetadata->getAttributesMetadata()['fooBar'], ['bar', 'foo']);
+                $this->addGroups($classMetadata->getAttributesMetadata()['xBar'], ['bar']);
+                $this->addGroups($classMetadata->getAttributesMetadata()['foo'], ['foo']);
 
                 return true;
+            }
+
+            /**
+             * @param string[] $groups
+             */
+            private function addGroups(AttributeMetadataInterface $metadata, array $groups): void
+            {
+                foreach ($groups as $group) {
+                    $metadata->addGroup($group);
+                }
             }
         });
 
