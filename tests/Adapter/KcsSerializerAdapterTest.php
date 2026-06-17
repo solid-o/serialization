@@ -6,6 +6,7 @@ use Kcs\Metadata\ClassMetadataInterface;
 use Kcs\Metadata\Loader\ChainLoader;
 use Kcs\Metadata\Loader\LoaderInterface;
 use Kcs\Serializer\Metadata\ClassMetadata;
+use Kcs\Serializer\Metadata\Exclusion\Behavior;
 use Kcs\Serializer\Metadata\Loader\AttributesLoader;
 use Kcs\Serializer\Metadata\PropertyMetadata;
 use Kcs\Serializer\SerializerBuilder;
@@ -42,7 +43,7 @@ class KcsSerializerAdapterTest extends AbstractSerializerAdapterTest
                     private function setGroups(PropertyMetadata $metadata, array $groups): void
                     {
                         $metadata->groups = $groups;
-                        $metadata->onExclude = PropertyMetadata::ON_EXCLUDE_SKIP;
+                        $metadata->onExclude = Behavior::Skip;
                     }
                 }
             ]))

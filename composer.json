@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "jms/serializer": "^3.0",
-        "kcs/serializer": "^4.0",
+        "kcs/serializer": "^5.0",
         "friendsofphp/proxy-manager-lts": "^1.0",
         "phpspec/prophecy-phpunit": "^2.0",
         "phpunit/phpunit": "^11.0 || ^12.0",
